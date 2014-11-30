@@ -25,9 +25,6 @@ exports.create = function(req, res){
 	};
 
 	workflow.on('validation', function() {
-		title = req.body.title;
-		content = req.body.content;
-
 		if(title.length === 0)
 			workflow.outcome.errfor.subject = '這是必填欄位';
 		if(content.length === 0)
@@ -44,9 +41,13 @@ exports.create = function(req, res){
 		});
 		post.save();
 
+		workflow.outcome.success = true;
 		workflow.emit('response');
 	});
 
 	workflow.on('response', function() {
+		res.send(workflow.outcome);
 	});
+	
+	workflow.emit('validation');
 };
