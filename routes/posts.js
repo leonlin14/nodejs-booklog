@@ -4,13 +4,18 @@ exports.list = function(req, res){
 	var model = req.app.db.model.Post;
  	
    	model
-   		.find({})
-   		.populate('userId')
-   		.exec(function(err, posts) {
- 		  	res.send({
- 		  		posts: posts
- 		  	});
- 		  	res.end();
+  		.aggregate([
+            {
+                $project: { _id: 1, title: 1, content: 1, userId: 1 }
+            }
+  		])
+  		.exec(function(err, posts) {
+  			req.app.db.model.Post.populate(posts, {path: 'userId'}, function() {
+	 		  	res.send({
+	 		  		posts: posts
+	 		  	});
+	 		  	res.end();
+  			});
    		});
 };
 
