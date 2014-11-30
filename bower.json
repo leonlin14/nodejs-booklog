@@ -1,0 +1,25 @@
+{
+  "name": "nodejs-booklog",
+  "version": "0.0.0",
+  "homepage": "https://github.com/leonlin14/nodejs-booklog",
+  "authors": [
+    "leonlin14 <leonlin14@gmail.com>"
+  ],
+  "license": "MIT",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "public/vendor",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.3.1",
+    "backbone": "~1.1.2",
+    "momentjs": "~2.8.4",
+    "notifyjs": "~0.3.2",
+    "fontawesome": "~4.2.0"
+  }
+}
