@@ -26,6 +26,7 @@ db.once('open', function callback () {
 });
 
 var postSchema = new mongoose.Schema({
+    userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     title: String,
     content: String
 });
