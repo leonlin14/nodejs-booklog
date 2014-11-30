@@ -4,19 +4,21 @@ block feet
   script(src='/views/index.js')
 block content
     .container(style='margin-top: 100px;')
-        .row
-            .col-lg-8
-              div#blog-post
-            .col-md-4
-              .well#search-section
-                h4 Author Search
-                .input-group
-                  input.form-control#search-tag(type='text')
-                  span.input-group-btn
-                    button.btn.btn-default.btn-search(type='button')
-                      span.glyphicon.glyphicon-search
-              .well#search-result
-        .row#form-section
+      .row
+          .col-lg-8
+            div#blog-post
+          .col-md-4
+            .well#search-section
+              h4 Author Search
+              .input-group
+                input.form-control#search-tag(type='text')
+                span.input-group-btn
+                  button.btn.btn-default.btn-search(type='button')
+                    span.glyphicon.glyphicon-search
+            .well#search-result
+      .row
+        .col-lg-8
+          #form-section
 
     script(type='text/template', id='tmpl-post')
       div#actions
@@ -24,16 +26,9 @@ block content
           button.btn.btn-primary.btn-filter 日期排序
           button.btn.btn-primary.btn-format 日期格式
       <% _.each(posts, function(post) { %>
-      .well(style='margin-top: 20px;')
-        h1 <%= post.title %>
-        p.lead
-          | by
-          | &nbsp;<%= post.userId.facebook.displayName %>
-        p
-          span.glyphicon.glyphicon-time
-          | Posted on 
-          span.post-date <%= post.userId.timeCreated %>
+      h1 <%= post.title %>
       <% }); %>
+      hr
 
     script(type='text/template', id='tmpl-results')
       h4 Search Result

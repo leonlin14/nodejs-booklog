@@ -105,6 +105,7 @@ app.use('/users', users);
 
 // REST APIs
 app.get('/1/post', posts.list);
+app.get('/1/post/:tag', posts.listByTag);
 app.post('/1/post', posts.create);
 
 // Pages
