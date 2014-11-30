@@ -9,8 +9,32 @@ var http = require('http');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var posts = require('./routes/posts');
+var mongoose = require('mongoose');
 
 var app = express();
+
+// mongoose
+mongoose.connect('mongodb://localhost/booklog');
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function callback () {
+    console.log('MongoDB: connected.');   
+});
+
+var postSchema = new mongoose.Schema({
+    title: String,
+    content: String
+});
+
+app.db = {
+    model: {
+        Post: mongoose.model('post', postSchema),
+    }
+};
+
+app.hello = 'yes';
+
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
