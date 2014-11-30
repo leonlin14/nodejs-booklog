@@ -29,7 +29,8 @@ block content
           button.btn.btn-primary.btn-format 日期格式
       <% _.each(posts, function(post) { %>
       h1 <%= post.title %> 
-        small by: <%= post.userId.displayName %>
+      p by: <%= post.userId.displayName %>
+      p count: <%= post.wchars %>
       <% }); %>
       hr
 
