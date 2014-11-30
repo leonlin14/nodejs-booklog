@@ -16,8 +16,10 @@ exports.list = function(req, res){
 exports.create = function(req, res){
 	var workflow = new events.EventEmitter();
 	var model = req.app.db.model.Post;
-	var title = req.query.title;
-	var content = req.query.content;
+	var title = req.body.title;
+	var content = req.body.content;
+
+console.log('USER: ' + req.user);
 
 	workflow.outcome = {
 		success: false,
