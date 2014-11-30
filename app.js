@@ -39,6 +39,10 @@ var userSchema = new mongoose.Schema({
     facebook: {}
 });
 
+postSchema.index( { title: 1 } );
+postSchema.index( { title: "text" } );
+postSchema.index( { content: "text" } );
+
 app.db = {
     model: {
         Post: mongoose.model('post', postSchema),

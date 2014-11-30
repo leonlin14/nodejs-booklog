@@ -19,7 +19,7 @@ exports.listByTag = function(req, res){
 	var tag = req.params.tag;
 
   	model
-  		.find({title: tag})
+  		.find({$text: {$search: tag}})
   		.populate('userId')
   		.exec(function(err, posts) {
 		  	res.send({
