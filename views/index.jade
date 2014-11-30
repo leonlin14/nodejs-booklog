@@ -9,16 +9,18 @@ block content
             div#blog-post
           .col-md-4
             .well#search-section
-              h4 Author Search
-              .input-group
-                input.form-control#search-tag(type='text')
-                span.input-group-btn
-                  button.btn.btn-default.btn-search(type='button')
-                    span.glyphicon.glyphicon-search
             .well#search-result
       .row
         .col-lg-8
           #form-section
+
+    script(type='text/template', id='tmpl-query')
+      h4 Title Search
+      .input-group
+        input.form-control#search-tag(type='text')
+        span.input-group-btn
+          button.btn.btn-default.btn-search(type='button')
+            span.glyphicon.glyphicon-search
 
     script(type='text/template', id='tmpl-post')
       div#actions
@@ -38,7 +40,7 @@ block content
 
     script(type='text/template', id='tmpl-form')
       form.form-horizontal
-        h3 Leave a Message
+        h3 New Article
         .form-group(class!='<%= errfor.title ? "has-error" : "" %>')
           label.control-label(for='title') Title
           input.form-control#title(name='title', type='text')
