@@ -1,3 +1,5 @@
+var events = require('events');
+
 exports.list = function(req, res){
 	var model = req.app.db.model.Post;
  	
@@ -12,15 +14,26 @@ exports.list = function(req, res){
 };
 
 exports.create = function(req, res){
+	var workflow = new events.EventEmitter();
 	var model = req.app.db.model.Post;
 	var title = req.query.title;
 	var content = req.query.content;
 
-	var post = new model({
-		title: title,
-		content: content
+	workflow.on('validation', function() {
+		if (hasError) workflow.emit('response');
+		workflow.emit('savePost');
 	});
-	post.save();
 
-	res.send({status: 'OK'});
+	workflow.on('savePost', function() {
+		var post = new model({
+			title: title,
+			content: content
+		});
+		post.save();
+
+		workflow.emit('response');
+	});
+
+	workflow.on('response', function() {
+	});
 };
