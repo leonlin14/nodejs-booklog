@@ -27,18 +27,18 @@ block content
         .btn-group
           button.btn.btn-primary.btn-filter 日期排序
           button.btn.btn-primary.btn-format 日期格式
-      <% _.each(posts, function(post) { %>
+        <% _.each(posts, function(post) { %>
         h1 <%= post.title %> 
         p by: <%= post.userId.displayName %>
         p count: <%= post.wchars %>
         <% if (post.orders.length === 0) { %>
-          button.btn.btn-default(data-purchase-for!='<%= post._id %>') 購買全文
+        button.btn.btn-default(data-purchase-for!='<%= post._id %>') 購買全文
         <% } else if (post.granted === true) { %>
-          button.btn.btn-primary(data-purchase-for!='<%= post._id %>') 己購買
+        button.btn.btn-primary(data-purchase-for!='<%= post._id %>') 己購買
         <% } else { %>
-          a.btn.btn-danger(href!='<%= post.orders[0].paypal.links[1].href %>', target='_blank') 線上付款
+        a.btn.btn-danger(href!='<%= post.orders[0].paypal.links[1].href %>', target='_blank') 線上付款
         <% } %>
-      <% }); %>
+        <% }); %>
       hr
 
     script(type='text/template', id='tmpl-results')
