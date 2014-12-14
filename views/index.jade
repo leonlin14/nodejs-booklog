@@ -33,7 +33,9 @@ block content
         p count: <%= post.wchars %>
         <% if (post.orders.length === 0) { %>
           button.btn.btn-default(data-purchase-for!='<%= post._id %>') 購買全文
-          <% } else { %>
+        <% } else if (post.granted === true) { %>
+          button.btn.btn-primary(data-purchase-for!='<%= post._id %>') 己購買
+        <% } else { %>
           a.btn.btn-danger(href!='<%= post.orders[0].paypal.links[1].href %>', target='_blank') 線上付款
         <% } %>
       <% }); %>

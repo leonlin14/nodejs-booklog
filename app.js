@@ -35,8 +35,9 @@ var postSchema = new mongoose.Schema({
     /* PayPal payments */
     orders: [{
       userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
-      paypal: { type: Object, select: false } 
-    }]
+      paypal: { type: Object, select: true } 
+    }],
+    customers: [ { type: mongoose.Schema.Types.ObjectId, ref: 'User' } ]
 });
 
 var userSchema = new mongoose.Schema({
