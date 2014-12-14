@@ -57,10 +57,23 @@ router.put('/1/post/:postId/pay', function(req, res, next) {
 		        console.log("Create Payment Response");
 		        console.log(payment);
 		    }
+		    var order = {
+		    	userId: req.user._id,
+		    	paypal: payment
+		    };
+
+			posts
+			.findByIdAndUpdate(postId, { $addToSet: { orders: order } }, function(err, post) {
+				workflow.outcome.success = true;
+				workflow.outcome.data = post;
+				
+				workflow.emit('response');
+			});
 		});
     });
 
     workflow.on('response', function() {
+    	return res.send(workflow.outcome);
     });
 
     return workflow.emit('validate');
