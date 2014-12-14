@@ -185,7 +185,8 @@ app.PurchasePost = Backbone.Model.extend({
   app.QueryView = Backbone.View.extend({
     el: '#search-section',
     events: {
-      'click .btn-search': 'performSearch'
+      'click .btn-search': 'performSearch',
+      'input #search-tag': 'performSearch'
     },
     initialize: function() {
         this.template = _.template($('#tmpl-query').html());

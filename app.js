@@ -13,6 +13,7 @@ var session = require('express-session');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 var posts = require('./routes/posts');
+var paypal = require('./routes/paypal');
 
 var app = express();
 
@@ -28,7 +29,8 @@ db.once('open', function callback () {
 var postSchema = new mongoose.Schema({
     userId: { type: mongoose.Schema.Types.ObjectId, ref: 'User' },
     title: String,
-    content: String
+    content: String,
+    wchars: { type: Number, default: 0 }
 });
 
 var userSchema = new mongoose.Schema({
@@ -112,6 +114,9 @@ app.use(function(req, res, next) {
 
 app.use('/', routes);
 app.use('/users', users);
+
+//Paypal
+app.use(paypal);
 
 // REST APIs
 app.get('/1/post', posts.list);
